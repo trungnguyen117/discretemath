@@ -1,62 +1,59 @@
-// Counting sort in C++ programming
+// Counting sort 
 
 #include <iostream>
 using namespace std;
 
-void countSort(int array[], int size) {
-  // The size of count must be at least the (max+1) but
-  // we cannot assign declare it as int count(max+1) in C++ as
-  // it does not support dynamic memory allocation.
-  // So, its size is provided statically.
-  int output[10];
-  int count[10];
-  int max = array[0];
+void countingSort(int arr[], int n) {
 
-  // Find the largest element of the array
+  int final[10];
+  int count[10];
+  
+
+  // Tìm giá trị lớn nhất trong mảng
+  int max = arr[0];
   for (int i = 1; i < size; i++) {
-    if (array[i] > max)
-      max = array[i];
+    if (arr[i] > max)
+      max = arr[i];
   }
 
-  // Initialize count array with all zeros.
+  // Tạo mảng tạm để đếm số lần xuất hiện của mỗi giá trị
   for (int i = 0; i <= max; ++i) {
     count[i] = 0;
   }
 
-  // Store the count of each element
-  for (int i = 0; i < size; i++) {
-    count[array[i]]++;
+  // Đếm số lần xuất hiện của mỗi giá trị
+  for (int i = 0; i < n; i++) {
+    count[arr[i]]++;
   }
 
-  // Store the cummulative count of each array
+  // Tính số lượng các giá trị nhỏ hơn hoặc bằng mỗi giá trị
   for (int i = 1; i <= max; i++) {
     count[i] += count[i - 1];
   }
 
-  // Find the index of each element of the original array in count array, and
-  // place the elements in output array
-  for (int i = size - 1; i >= 0; i--) {
-    output[count[array[i]] - 1] = array[i];
-    count[array[i]]--;
+  // Tạo mảng kết quả và đặt các phần tử vào vị trí thích hợp
+  for (int i = n - 1; i >= 0; i--) {
+    final[count[arr[i]] - 1] = arr[i];
+    count[arr[i]]--;
   }
 
-  // Copy the sorted elements into original array
-  for (int i = 0; i < size; i++) {
-    array[i] = output[i];
+  // Sao chép mảng kết quả vào mảng ban đầu
+  for (int i = 0; i < n; i++) {
+    arr[i] = final[i];
   }
 }
 
-// Function to print an array
-void printArray(int array[], int size) {
-  for (int i = 0; i < size; i++)
-    cout << array[i] << " ";
+// Hàm in ra mảng
+void printArray(int arr[], int n) {
+  for (int i = 0; i < n; i++)
+    cout << arr[i] << " ";
   cout << endl;
 }
 
-// Driver code
+// 
 int main() {
-  int array[] = {4, 2, 2, 8, 3, 3, 1};
-  int n = sizeof(array) / sizeof(array[0]);
+  int arr[] = {4, 2, 2, 8, 3, 3, 1};
+  int n = sizeof(arr) / sizeof(arr[0]);
   countSort(array, n);
   printArray(array, n);
 }
