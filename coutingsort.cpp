@@ -11,7 +11,7 @@ void countingSort(int arr[], int n) {
 
   // Tìm giá trị lớn nhất trong mảng
   int max = arr[0];
-  for (int i = 1; i < size; i++) {
+  for (int i = 1; i < n; i++) {
     if (arr[i] > max)
       max = arr[i];
   }
@@ -54,6 +54,6 @@ void printArray(int arr[], int n) {
 int main() {
   int arr[] = {4, 2, 5, 8, 3, 7, 1};
   int n = sizeof(arr) / sizeof(arr[0]);
-  countSort(array, n);
-  printArray(array, n);
+  countingSort(arr, n);
+  printArray(arr, n);
 }
