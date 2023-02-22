@@ -52,7 +52,7 @@ void printArray(int arr[], int n) {
 
 // 
 int main() {
-  int arr[] = {4, 2, 2, 8, 3, 3, 1};
+  int arr[] = {4, 2, 5, 8, 3, 7, 1};
   int n = sizeof(arr) / sizeof(arr[0]);
   countSort(array, n);
   printArray(array, n);
